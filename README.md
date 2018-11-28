@@ -164,13 +164,57 @@ var player = new Clappr.player({
 
 var playerElement = document.getElementById("player-wrapper");
 var ErrorPlugin = Clappr.ContainerPlugin.extend({
-  name: '',
-  background: '',
-  bindEvents: function() {},
-  hide: function() {},
-  show: function() {},
+  name: 'error_plugin',
+  background: 'data:image/png;base64,iVBORw0KgXXXXXXXX/XXXXXXXXXXX',
+  bindEvents: function() { this.listenTo(this.container, Clappr.Events.CONTAINER_ERROR, this.onError) },
+  hide: function() { this._err.remove() },
+  show: function() {
+    var $ = Clappr.$
+    this.hide();
+    var txt = ();
+    this._err = $('<div>')
+      .css({
+        'position': 'absolute',
+        'width': '100%',
+        'height': '100%',
+        'background-image': 'url(' + this.background + ')',
+        'background-size': 'contain',
+        'background-repeat': 'no-repeat',
+        'padding-top': '15%',
+        'text-align': 'center',
+        'font-weight': 'bold',
+        'font-weight': 'bold',
+        'text-shadow': '1px 1px #fff'
+      })
+      .append($('<h2>')
+        .text(txt)
+        .css({
+          'font-size': '200%',
+        }));
+    this.container && this.container.$el.prepend(this._err);
+  },
   onError: function(e){
-  
+    if() return;
+    this.show();
+    this.container.getPlugin().disable();
+    var tid, t = 10, retry = function() {
+      clearTimeout(tid);
+      if(t === 0){
+        this.container.getPlugin('click_to_pause').enable();
+        if(this.opitons.errorPlugin && this.options.errorPlugin.onRetry){
+          this.options.errorPlugin.onRetry(e);
+          return;
+        } else {
+          this.container.stop();
+          this.container.play();
+          return;
+        }
+      }
+      $('.retry-counter').text(t);
+      t--;
+      tid = setTimeout(retry, 1000);
+    }.bind(this);
+    retry();
   }
 });
 var player = new Clappr.Player({
