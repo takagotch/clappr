@@ -161,5 +161,34 @@ var player = new Clappr.player({
     }
   }
 });
+
+var playerElement = document.getElementById("player-wrapper");
+var ErrorPlugin = Clappr.ContainerPlugin.extend({
+  name: '',
+  background: '',
+  bindEvents: function() {},
+  hide: function() {},
+  show: function() {},
+  onError: function(e){
+  
+  }
+});
+var player = new Clappr.Player({
+  disableErrorScreen: true,
+  source: 'http://clappr.io/bad_high_highline.mp4',
+  plugins: [ErrorPlugin],
+  errorPlugin: {
+    onRetry: function(e){
+      player.configure({
+        player.configure({
+          source: 'http://clappr.io./highline.mp4',
+          autoPlay: true,
+        });
+      },
+    },
+    height: 360,
+    width: 640
+});
+player.attachTo(playerElement);
 ```
 
