@@ -101,5 +101,20 @@ var player = new Clappr.Player({
 ```
 
 ```
+var player = new Clappr.Player(
+  events: {
+    onReady: function() { ... },
+    onResize: function() { ... },
+    onPlay: function() { ... },
+    onPause: function() { ... },
+    onStop: function() { ... },
+    onEnded: function() { ... },
+    onSeek: function() { ... },
+    onError: function() { ... },
+    onTimeUpdate: function() { ... },
+    onVolumeUpdate: function() { ... },
+  }
+)
+player.on(Clappr.Events.PLAYER_PLAY, function(){ ... })
 ```
 
