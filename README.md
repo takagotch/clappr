@@ -94,7 +94,7 @@ let player = new Clappr.Player({
 });
 
 var player = new Clappr.Player({
-  source: "http://your.video/here.mp4',
+  source: "http://your.video/here.mp4",
   watermark: "http://url/img.png", position: 'top-right',
   watermarkLink: "http://example.net/"
 });
@@ -116,5 +116,50 @@ var player = new Clappr.Player(
   }
 )
 player.on(Clappr.Events.PLAYER_PLAY, function(){ ... })
+
+var player = new Clappr.Player({
+  parent: '#myplayer',
+  source: 'http://path.to/my/video.mp4',
+  events: {
+    onError: function(e) {
+    }
+  }
+});
+
+var playerElement = document.getElementById("player-wrapper");
+var r = 3;
+var player = new Clappr.player({
+  source: 'http://clappr.io/bad_highline.mp4
+  disableErrorScreen: true,
+  height: 360,
+  width: 640,
+  events: {
+    onError: function(e) {
+      if(t == 0) {
+        var o = player.options;
+        o.source = s;
+        player.configure(o);
+        return;
+      }
+      Clappr.$('#retryCounter').text(t);
+      t--;
+      setTimeout(retru, 1000);
+    };
+    player.configure({
+      autoPlay: true,
+      source: 'playback.error',
+      playbackNotSupportedMessage: '' + ((r > 0)
+        autoPlay: true,
+        source: 'playback.error',
+        playbackNotSupportedMessage: 'Network fatal error.' + ((r > 0)
+          ? 'Retrying in <span id="retryCounter"></span> seconds ...'
+          : ' All retry attempst failed');
+      };
+      if(r > 0) {
+        retry();
+      }
+    }
+  }
+});
 ```
 
